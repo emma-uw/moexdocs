@@ -1,0 +1,71 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ *
+ * MOEX brand palette: navy primary, red accent.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Source+Sans+3:ital,wght@0;400;600;700&display=swap');
+
+:root {
+  --ifm-color-primary: #1a5faa;
+  --ifm-color-primary-dark: #165a9e;
+  --ifm-color-primary-darker: #155595;
+  --ifm-color-primary-darkest: #11467b;
+  --ifm-color-primary-light: #2a6fba;
+  --ifm-color-primary-lighter: #3578c0;
+  --ifm-color-primary-lightest: #4f8ec9;
+  --ifm-code-font-size: 95%;
+  --moex-navy: #003f7d;
+  --moex-red: #e30613;
+  --moex-hero-from: #0a2240;
+  --moex-hero-to: #003f7d;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4a9ae8;
+  --ifm-color-primary-dark: #3d8ddb;
+  --ifm-color-primary-darker: #3685d2;
+  --ifm-color-primary-darkest: #2c6eae;
+  --ifm-color-primary-light: #5da6ec;
+  --ifm-color-primary-lighter: #6aafee;
+  --ifm-color-primary-lightest: #8bc4f3;
+  --moex-navy: #0a2240;
+  --moex-red: #e30613;
+  --moex-hero-from: #051118;
+  --moex-hero-to: #0a2240;
+}
+
+/* @cmfcmf/docusaurus-search-local (Algolia Autocomplete) */
+.navbarSearchContainer_Bca1 .aa-Input {
+  width: 300px !important;
+  min-height: 40px !important;
+  font-size: 16px !important;
+  padding: 10px 12px !important;
+}
+
+.aa-DetachedSearchButton {
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  max-height: 35px !important;
+  min-width: 200px !important;
+  border-radius: 4px !important;
+  background-color: #f8f9fa !important;
+  border: 1px solid #ddd !important;
+  color: #6c757d !important;
+  transition: all 0.2s ease !important;
+}
+
+@media screen and (max-width: 996px) {
+  .aa-DetachedSearchButton {
+    min-width: 150px !important;
+  }
+}
+
+/* Landing page scoped typography (frontend-design) */
+.landingPage {
+  --landing-font-display: 'Unbounded', system-ui, sans-serif;
+  --landing-font-body: 'Source Sans 3', system-ui, sans-serif;
+  font-family: var(--landing-font-body);
+}

@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--Описание структуры файла с информацией о регистрации клиентов на различных рынках Московской биржи-->
+	<xs:simpleType name="TRD_RESTR">
+		<xs:annotation>
+			<xs:documentation>Тип: "Возможность осуществления операций (сделок) с резидентами"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DATE_FORMAT">
+		<xs:annotation>
+			<xs:documentation>Формат даты типа "01.12.2015"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="DOCNO_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Уникальный учетный номер документа в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value="[A-Z,0-9,//]{1,12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DOCTYPEID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор типа документа в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REMARKS_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Примечание к документу в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="120"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FIRMID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UNIFIRMID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Уникод фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FIRMNAME_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Краткое наименование фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INN_LEGAL_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "ИНН юридического лица"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INN_PHIS_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "ИНН физического лица"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KIO_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип: "КИО"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="4"/>
+			<xs:maxLength value="20"/>
+			<xs:pattern value="[0]{3}[0-9a-zA-Zа-яА-Я._#/ -]{1,17}"/>
+			<xs:pattern value="[0-9a-zA-Z._#/-]{7,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CURRENCYID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор валюты"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Float20.6_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Вещественное число 20.6"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="6"/>
+			<xs:totalDigits value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MARKETID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор рынка"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="4"/>
+			<xs:enumeration value="CU"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="FO"/>
+			<xs:enumeration value="PF"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="DE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLIENTCODE_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Краткий код клиента"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value="[a-zA-Z0-9_]{1,12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLIENTOPERATION_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Операция над клиентом"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Добавление информации о клиенте</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U">
+				<xs:annotation>
+					<xs:documentation>Изменение информации о клиенте</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L">
+				<xs:annotation>
+					<xs:documentation>Добавление привязки кратких кодов на рынках к клиенту</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="R">
+				<xs:annotation>
+					<xs:documentation>Удаление привязки кратких кодов на рынках к клиенту</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Перемещение привязки кратких кодов на рынках к данному клиенту</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D">
+				<xs:annotation>
+					<xs:documentation>Удаление информации о клиенте</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="COUNTRYCODE_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Код страны"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLIENTCODEDESCR_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Описание для краткого кода клиента"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+			<xs:pattern value="[a-zA-Z0-9]{1,200}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BANKLICENSE_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Номер банковской лицензии"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+			<xs:pattern value="[0-9]{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YES_NO_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: " "Y"-YES, "N"-NO"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Y"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PASSPORT_RF_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип: "№ и серия паспорта гражданина РФ"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="[0-9]{2}[ ][0-9]{2}[ ][0-9]{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PASSPORT_USSR_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип: "№ и серия паспорта гражданина СССР"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="11"/>
+			<xs:maxLength value="16"/>
+			<xs:pattern value="[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ][ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[-][АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ][АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ][ ][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CROSSTRADES_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Y">
+				<xs:annotation>
+					<xs:documentation>«Разрешить кросс-сделки в адресном режиме» = ДА, «Снять пассивную кросс-заявку» = НЕТ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N">
+				<xs:annotation>
+					<xs:documentation>«Разрешить кросс-сделки в адресном режиме» = НЕТ, «Снять пассивную кросс-заявку» = НЕТ</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P">
+				<xs:annotation>
+					<xs:documentation>«Разрешить кросс-сделки» в адресном режиме = НЕТ, «Снять пассивную кросс-заявку» = ДА</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X">
+				<xs:annotation>
+					<xs:documentation>«Разрешить кросс-сделки в адресном режиме» = ДА, «Снять пассивную кросс-заявку» = ДА</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U">
+				<xs:annotation>
+					<xs:documentation>(Только ВР)
+«Разрешить кросс-сделки в адресном режиме» = НЕТ, «игнорировать свою пассивную заявку и проверять следующую в очереди» = ДА</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K">
+				<xs:annotation>
+					<xs:documentation>(Только ВР)
+«Разрешить кросс-сделки в адресном режиме» = ДА, «игнорировать свою пассивную заявку и проверять следующую в очереди» = ДА</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BIC_TYPE">
+		<xs:annotation>
+			<xs:documentation>Банковский идентификационный код</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="8"/>
+			<xs:maxLength value="9"/>
+			<xs:pattern value="[0-9]{8,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FOREIGN_DOC_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип документа иностранноого гражданина</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="6">
+				<xs:annotation>
+					<xs:documentation>Паспорт иностранного гражданина</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="7">
+				<xs:annotation>
+					<xs:documentation>Иной документ, который в соответствии с законом РФ или международным договором РФ признается документом, удостоверяющим личность иностранного гражданина</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CATEGORY_TYPE">
+		<xs:annotation>
+			<xs:documentation>Категория клиента</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RISKLEVEL_TYPE">
+		<xs:annotation>
+			<xs:documentation>Категория уровня риска клиента</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>Не указан</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Клиент с Начальным Уровнем Риска (КНУР)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Клиент со Стандартным Уровнем Риска (КСУР)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Клиент с Повышенным Уровнем Риска (КПУР)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Клиент с Особым Уровнем Риска (КОУР)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DOC_REQUISITES_Type">
+		<xs:annotation>
+			<xs:documentation>Реквизиты документа в системе электронного документооборота</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="DOC_DATE" type="DATE_FORMAT" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата формирования файла</xs:documentation>
+			</xs:annotation>
+			<!--Дата формирования документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_TIME" type="xs:time" use="optional">
+			<xs:annotation>
+				<xs:documentation>Время формирования файла</xs:documentation>
+			</xs:annotation>
+			<!--Время формирования документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_NO" type="DOCNO_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Уникальный учетный номер документа в системе электронного документооборота</xs:documentation>
+			</xs:annotation>
+			<!--Уникальный учетный номер документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_TYPE_ID" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор типа документа в системе электронного документооборота</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор типа документа-->
+			<xs:simpleType>
+				<xs:restriction base="DOCTYPEID_Type">
+					<xs:pattern value="[E][C][L][I][E][N][T][S]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SENDER_ID" type="UNIFIRMID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор отправителя</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор фирмы-отправителя документа-->
+		</xs:attribute>
+		<xs:attribute name="SENDER_NAME" type="FIRMNAME_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Краткое наименование отправителя</xs:documentation>
+			</xs:annotation>
+			<!--Наименование (краткое) организатора системы электронного документооборота-->
+		</xs:attribute>
+		<xs:attribute name="RECEIVER_ID" type="FIRMID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор получателя</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор фирмы-получателя документа-->
+		</xs:attribute>
+		<xs:attribute name="REMARKS" type="REMARKS_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Текст примечания к файлу</xs:documentation>
+			</xs:annotation>
+			<!--Примечание к документу-->
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CLIENT_CODE_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации клиента</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="CLIENT_MARKETS" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="UniClientCode" type="CLIENTCODE_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Единый краткий код Клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CLIENT_CODE_MAIN_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации клиента-брокера</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="CLIENT_MARKETS_MAIN" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="UniClientCode" type="CLIENTCODE_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Единый краткий код Клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CLIENT_MARKETS_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации клиента на каждом из рынков</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ClientCode" type="CLIENTCODE_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Краткий код клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MarketId" type="MARKETID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор рынка. Возможные значения:
+SE - Фондовый рынок ПАО Московская Биржа;
+CU - Валютный рынок и рынок драгоценных металлов ОАО Московская Биржа;
+FO - Срочный рынок ОАО Московская Биржа;
+PF - Рынок СПФИ ОАО Московская Биржа; 
+CO - Рынок «Урожай» АО НТБ 
+DE - Рынок Депозитов;</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isIISContract" type="YES_NO_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>С клиентом заключен договор на ведение индивидуального инвестиционного счета</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isCrossTrades" type="CROSSTRADES_TYPE" use="optional">
+			<xs:annotation>
+				<xs:documentation>Разрешить совершение кросс-сделок для указанного рынка. Этот параметр переопределяет для указанного рынка значение параметра isCrossTrades указанного в ноде CLIENT_SIMPLE</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ClientCodeDescr" use="optional">
+			<xs:annotation>
+				<xs:documentation>Наименование для краткого кода клиента</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="CLIENTCODEDESCR_Type"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isMainGroupDU" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Если этот параметр установлен в Y, то данный краткий код клиента на указанном рынке выступает в качестве управляющего для группы учредителей ДУ.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NumPortfolio" use="optional">
+			<xs:annotation>
+				<xs:documentation>Номер портфеля для ДУ нереза</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+					<xs:minLength value="1"/>
+					<xs:pattern value="[a-zA-Z0-9]{1,20}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="NdsPayer" use="optional">
+			<xs:annotation>
+				<xs:documentation>Только для рынка "УРОЖАЙ". Плательщик НДС: 
+1 – плательщик
+0 – не плательщик
+</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:enumeration value="0"/>
+					<xs:enumeration value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="CoCategory" use="optional">
+			<xs:annotation>
+				<xs:documentation>Только для рынка "УРОЖАЙ". Категория клиента:
+1 – Сельхозтоваропроизводитель
+2 – Имущественный клиент
+3 – Безимущественный клиент 
+</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:enumeration value="1"/>
+					<xs:enumeration value="2"/>
+					<xs:enumeration value="3"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="irc" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код получателя дохода (КПД)- IRC - income recipient code  (ID ФПД) буквенно-числовой код для обезличенной передачи информации в виде номера участнику торгов (Брокеру) через которого УКН регистрирует ФПД в ЕРК</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[0-9]{1,5}[A-Z]{2,2}[0-9]{3,10}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="NSDClientCode" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код зарегистрированного в НРД клиента Участника</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="12"/>
+					<xs:minLength value="1"/>
+					<xs:pattern value="[a-zA-Z0-9]{1,20}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Chap3RateDvca" use="optional">
+			<xs:annotation>
+				<xs:documentation>Применяемая ставка по дивидендам US-бумаг для клиента Участника по главе 3</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:fractionDigits value="2"/>
+					<xs:totalDigits value="4"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Chap3RateIntr" use="optional">
+			<xs:annotation>
+				<xs:documentation>Применяемая ставка по купонным доходам US-бумаг для клиента Участника по главе 3</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:fractionDigits value="2"/>
+					<xs:totalDigits value="4"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Chap4Status" use="optional">
+			<xs:annotation>
+				<xs:documentation>Статус клиента Участника по главе 4</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="NPFFI"/>
+					<xs:enumeration value="RCNUS"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isFond_NPF_Reserv" type="YES_NO_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>НПФ сами являясь участниками торгов могут размещать средства</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ClientCodeSE" use="optional">
+			<xs:annotation>
+				<xs:documentation>Привязка КТК на Фондовом рынке к Срочному рынку (передается и имеет смысл только на Срочном рынке)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="12"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ClientCodeSEStatus" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="D"/>
+					<xs:pattern value="U"/>
+					<xs:pattern value="N"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Category" type="CATEGORY_TYPE">
+			<xs:annotation>
+				<xs:documentation>Категория клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RiskLevel" type="RISKLEVEL_TYPE" use="optional">
+			<xs:annotation>
+				<xs:documentation>Категория уровня риска клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isCrossTradesDU" type="YES_NO_Type">
+			<xs:annotation>
+				<xs:documentation>Признак разрешения проведения кросс-сделок ДУ на фондовом рынке между ПИФ одной УК</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CLIENT_MARKETS_MAIN_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации клиента-брокера на рынке</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ClientCode" type="CLIENTCODE_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Краткий код клиента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MarketId" type="MARKETID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор рынка. Возможные значения:
+SE - Фондовый рынок ПАО Московская Биржа;
+CU - Валютный рынок и рынок драгоценных металлов ОАО Московская Биржа;
+FO - Срочный рынок ОАО Московская Биржа;
+PF - Рынок СПФИ ОАО Московская Биржа; 
+CO - Рынок «Урожай» АО НТБ
+DE - Рынок Депозитов;</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="INDIVIDUAL_PERS_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="PASSPORT_RF">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина РФ (в формате: две цифры + пробел + две цифры + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_RF_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PASSPORT_USSR">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина СССР (в формате: до 6 римских цифр (в латинском регистре) + '-' +2 буквы кирилицей + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_USSR_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BIRTH_CERTIFICATE">
+				<xs:annotation>
+					<xs:documentation>Свидетельство о рождении
+(свободный формат)
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OTHER_DOC">
+				<xs:annotation>
+					<xs:documentation>Другой документ (свободный формат)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="DocName" use="optional">
+						<xs:annotation>
+							<xs:documentation>Название иностранного документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="DocType" type="FOREIGN_DOC_TYPE" use="optional">
+						<xs:annotation>
+							<xs:documentation>Вид иностранного документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="INFO_BAN" type="YES_NO_Type" use="optional" default="N">
+						<xs:annotation>
+							<xs:documentation>В отношении регистрируемого лица, являющегося клиентом иностранной организации-брокера или доверительного управляющего, трансграничная передача сведений запрещена личным законом указанной иностранной организации</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="isIISContract" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>С клиентом заключен договор на ведение индивидуального инвестиционного счета. Это значение может быть изменено для конкретного рынка при задании атрибута isIISContract в ноде CLIENT_MARKETS с указанием конкретного рынка.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="INN" type="INN_PHIS_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>ИНН индивидуального предпринимателя (для площадки УРОЖАЙ)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FIO" use="optional">
+			<xs:annotation>
+				<xs:documentation>Фамилия И.О. индивидуального предпринимателя (для площадки УРОЖАЙ)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="REPRESENTATIVE_PERS_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации законного представителя клиента</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="PassportRF">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина РФ (в формате: две цифры + пробел + две цифры + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_RF_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PassportUSSR">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина СССР (в формате: до 6 римских цифр (в латинском регистре) + '-' +2 буквы кирилицей + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_USSR_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OtherDoc">
+				<xs:annotation>
+					<xs:documentation>Другой документ
+(свободный формат)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="DocName" use="optional">
+						<xs:annotation>
+							<xs:documentation>Название иностранного документа</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="DocType" type="FOREIGN_DOC_TYPE" use="optional">
+						<xs:annotation>
+							<xs:documentation>Вид иностранного документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="KIO_DOC_Type">
+		<xs:annotation>
+			<xs:documentation>КИО: код иностранной организации</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="DocNo" type="KIO_TYPE" use="required"/>
+		<xs:attribute name="INFO_BAN" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>В отношении регистрируемого лица, являющегося клиентом иностранной организации-брокера или доверительного управляющего, трансграничная передача сведений запрещена личным законом указанной иностранной организации»</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LEGAL_PERS_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="INN">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="INN_LEGAL_Type"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="KIO" type="KIO_DOC_Type">
+				<xs:annotation>
+					<xs:documentation>Код иностранной организации (должен начинаться с '000')</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="isSelfFirm" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Если равно Y, то юридическая информация данного клиента совпадает с юридической информацией участника торгов, к которому он относится</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isInsureLicense" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Наличие у клиента лицензии на осуществление страхования соответствующего вида</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isCurrencyLicense" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Наличие у клиента валютной банковской лицензии</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="BankLicense" type="BANKLICENSE_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Номер лицензии на осуществление банковских операций, выданной клиенту, являющемуся кредитной организацией</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isMainBroker" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Может ли данный клиент выступать в качестве брокера для клиентов 2-го уровня.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isMainSingleDU" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Может ли данный клиент выступать в качестве управляющего для одного учредителея ДУ.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isMainGroupDU" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Может ли данный клиент выступать в качестве управляющего для группы учредителей ДУ.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isMainPF" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Может ли данный клиент выступать в качестве управляющего для фондов клиентов.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ShortName" use="optional">
+			<xs:annotation>
+				<xs:documentation>Краткое наименование в соответствии с Уставом (для площадки УРОЖАЙ)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isMainNotRezDU" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Может ли данный клиент выступать в качестве ДУ нерезидента</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NonresidentTaxCode" use="optional">
+			<xs:annotation>
+				<xs:documentation>Код налогоплательщика в стране регистрации</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SwiftCode" use="optional">
+			<xs:annotation>
+				<xs:documentation>BIC Бенефициарного собственника доходов</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="40"/>
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ClearingUnicode" type="UNIFIRMID_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Уникод участника клиринга</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="LEI" use="optional">
+			<xs:annotation>
+				<xs:documentation>Международный код идентификации юридического лица, pre-LEI/LEI</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[A-Z0-9]{20,20}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="BIC" type="BIC_TYPE" use="optional">
+			<xs:annotation>
+				<xs:documentation>Банковский идентификационный код</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LEGAL_PERS_DU_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации юридического лица ДУ</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="INN">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="INN_LEGAL_Type"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="KIO" type="KIO_DOC_Type">
+				<xs:annotation>
+					<xs:documentation>Код иностранной организации (должен начинаться с '000')</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="isInsureLicense" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Наличие у клиента лицензии на осуществление страхования соответствующего вида</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isCurrencyLicense" type="YES_NO_Type" use="optional" default="N">
+			<xs:annotation>
+				<xs:documentation>Наличие у клиента валютной банковской лицензии</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="BankLicense" type="BANKLICENSE_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Номер лицензии на осуществление банковских операций, выданной клиенту, являющемуся кредитной организацией</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ShortName" use="optional">
+			<xs:annotation>
+				<xs:documentation>Краткое наименование в соответствии с Уставом (для площадки УРОЖАЙ)</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="200"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="BIC" type="BIC_TYPE" use="optional">
+			<xs:annotation>
+				<xs:documentation>Банковский идентификационный код</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="CLIENT_CODE">
+		<xs:annotation>
+			<xs:documentation>Блок данных идентификации клиента</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="CLIENT_CODE_Type"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_CODE_MAIN" type="CLIENT_CODE_MAIN_Type">
+		<xs:annotation>
+			<xs:documentation>Блок данных идентификации клиента-брокера</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DOC_REQUISITES" type="DOC_REQUISITES_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="RUS">Блок информации о документе</xs:documentation>
+			<xs:documentation xml:lang="ENG">Document metadata</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="REPRESENTATIVE_PERS" type="REPRESENTATIVE_PERS_Type">
+		<xs:annotation>
+			<xs:documentation>Блок данных с идентификацией законного представителя клиента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MICEX_DOC">
+		<xs:annotation>
+			<xs:documentation xml:lang="RUS">Корневой элемент (root element) XML документа. </xs:documentation>
+			<xs:documentation xml:lang="ENG">Document root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DOC_REQUISITES"/>
+				<xs:element ref="CLIENTS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENTS">
+		<xs:annotation>
+			<xs:documentation xml:lang="RUS">Блок данных отчета. </xs:documentation>
+			<xs:documentation xml:lang="ENG"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLIENT" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="DocDate" type="DATE_FORMAT" use="required">
+				<xs:annotation>
+					<xs:documentation>Дата формирования документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UniFirmId" type="UNIFIRMID_Type" use="required">
+				<xs:annotation>
+					<xs:documentation>Единый идентификатор Участника (Уникод)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ServiceMode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Данный параметр используется для внутренних сервисных режимов.
+Не запонять!</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="LoadToTE" use="optional">
+				<xs:annotation>
+					<xs:documentation>Параметр определяющий - надо ли поднимать КТК из документа в ТС. Возможные значения: 0 - не поднимать, 1 - поднимать</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+		<xs:unique name="OperationId">
+			<xs:selector xpath="CLIENT"/>
+			<xs:field xpath="@OperationId"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="CLIENT">
+		<xs:annotation>
+			<xs:documentation>Блок данных о клиенте</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLIENT_CODE"/>
+				<xs:element ref="CLIENT_INFO" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="OperationId" use="required">
+				<xs:annotation>
+					<xs:documentation>Уникальный в данном документе идентификатор операции. Этот идентификатор будет использоваться в файле ответа по результатам обработки данного документа. Простейший вариант заполнения этого поля, это просто порядковый номер.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="LKU">
+				<xs:annotation>
+					<xs:documentation>Открываемое окно в ЛКУ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ClientOperation" type="CLIENTOPERATION_Type" use="required">
+				<xs:annotation>
+					<xs:documentation>Операция над клиентом:
+A – добавить;
+U – Изменить;
+L – Добавить привязку кратких кодов на рынках;
+R – Удалить привязку кратких кодов на рынках;
+M – Перемещение привязки кратких кодов на рынках к данному клиенту;
+D – Удалить;</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_MARKETS">
+		<xs:annotation>
+			<xs:documentation>Блок данных идентификации клиента на каждом из рынков</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="CLIENT_MARKETS_Type"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_MARKETS_MAIN" type="CLIENT_MARKETS_MAIN_Type">
+		<xs:annotation>
+			<xs:documentation>Блок данных идентификации клиента-брокера на рынке</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CLIENT_INFO">
+		<xs:annotation>
+			<xs:documentation>Блок данных с информацией о клиенте</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="CLIENT_SIMPLE"/>
+					<xs:element ref="CLIENT_DU"/>
+					<xs:element ref="CLIENT_PF"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_SIMPLE">
+		<xs:annotation>
+			<xs:documentation>Блок данных о клиентах участника или субброкера</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLIENT_CODE_MAIN" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Если эта нода присутствует. то данный клиент является клиентом 2-го уровня и в этой ноде описана идентификация клиента 1-го уровня. Если эта нода отсутствует, то этот клиент является прямым клиентом участников торгов</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="CLIENT_INDIVIDUAL">
+						<xs:annotation>
+							<xs:documentation>Блок данных о клиенте – физическом лице</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="INDIVIDUAL_PERS_Type">
+									<xs:sequence>
+										<xs:element ref="REPRESENTATIVE_PERS" minOccurs="0"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CLIENT_LEGAL_PERS" type="LEGAL_PERS_Type">
+						<xs:annotation>
+							<xs:documentation>Блок данных о клиенте – юридическом лице</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="CountryCode" type="COUNTRYCODE_Type" use="required">
+				<xs:annotation>
+					<xs:documentation>Код страны клиента, соответствующий Общероссийскому классификатору стран мира.
+"000" для лиц без гражданства
+</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isQualInvestor" type="YES_NO_Type" use="optional" default="N">
+				<xs:annotation>
+					<xs:documentation>Клиент является квалифицированным инвестором</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isCrossTrades" type="CROSSTRADES_TYPE" use="optional" default="N">
+				<xs:annotation>
+					<xs:documentation>Разрешить совершение кросс-сделок для всех рынков, для которых это понятие определено Правилами торгов. Это значение может быть изменено для конкретного рынка при задании атрибута isCrossTrades в ноде CLIENT_MARKETS с указанием конкретного рынка.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TRD_RESTR" type="TRD_RESTR" use="optional">
+				<xs:annotation>
+					<xs:documentation>Возможность осуществления операций (сделок) с резидентами:
+1-Разрешены операции (сделки) только с недружественными нерезидентами;
+2-Разрешены операции (сделки) только с  резидентами;</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_DU">
+		<xs:annotation>
+			<xs:documentation>Блок данных об учредителях доверительного управления, в интересах которых Клиент Участника выступает в качестве управляющего</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLIENT_CODE_MAIN">
+					<xs:annotation>
+						<xs:documentation>В этой ноде описана идентификация клиента- управляющего 1-го уровня.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="CLIENT_INDIVIDUAL">
+						<xs:annotation>
+							<xs:documentation>Блок данных о клиенте – физическом лице</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="INDIVIDUAL_PERS_Type">
+									<xs:sequence>
+										<xs:element ref="REPRESENTATIVE_PERS" minOccurs="0"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CLIENT_LEGAL_PERS" type="LEGAL_PERS_DU_Type">
+						<xs:annotation>
+							<xs:documentation>Блок данных о клиенте – юридическом лице ДУ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="CountryCode" type="COUNTRYCODE_Type" use="required">
+				<xs:annotation>
+					<xs:documentation>Код страны клиента, соответствующий Общероссийскому классификатору стран мира.
+"000" для лиц без гражданства</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isQualInvestor" type="YES_NO_Type" use="optional" default="N">
+				<xs:annotation>
+					<xs:documentation>Клиент является квалифицированным инвестором</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TRD_RESTR" type="TRD_RESTR" use="optional">
+				<xs:annotation>
+					<xs:documentation>Возможность осуществления операций (сделок) с резидентами:
+1-Разрешены операции (сделки) только с недружественными нерезидентами;
+2-Разрешены операции (сделки) только с  резидентами;</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT_PF">
+		<xs:annotation>
+			<xs:documentation>Блок данных о фондах, в интересах которых Участник или клиент Участника, выступает в качестве Управляющего</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CLIENT_CODE_MAIN">
+					<xs:annotation>
+						<xs:documentation>В в этой ноде описана идентификация клиента-управляющего фондом 1-го уровня.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="PIF">
+						<xs:annotation>
+							<xs:documentation>Управляющий для паевого инвестиционного фонда</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" type="xs:string"/>
+							<xs:attribute name="RegNum" use="required">
+								<xs:annotation>
+									<xs:documentation>государственный регистрационный номер выпуска (правил доверительного управления паевым инвестиционным фондом), присвоенный уполномоченным федеральным органом исполнительной власти</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+										<xs:pattern value="[\w\-_]*[a-zA-Zа-яА-Я1-9][\w\-_]*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="PIF_Type" use="optional">
+								<xs:annotation>
+									<xs:documentation>Тип паевого инвестиционного фонда. Возможные значения: OF - открытый, CF - закрытый, IF - интервальный, EF - биржевой </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="OF"/>
+										<xs:enumeration value="CF"/>
+										<xs:enumeration value="IF"/>
+										<xs:enumeration value="EF"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="NPF_Save">
+						<xs:annotation>
+							<xs:documentation>Управляющий пенсионными накоплениями негосударственного пенсионного фонда</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" use="required">
+								<xs:annotation>
+									<xs:documentation>ИНН НПФа</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="INN_LEGAL_Type"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="NPF_Reserv">
+						<xs:annotation>
+							<xs:documentation>Управляющий пенсионными резервами негосударственного пенсионного фонда</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" use="required">
+								<xs:annotation>
+									<xs:documentation>ИНН НПФа</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="INN_LEGAL_Type"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="NPF_Ustav">
+						<xs:annotation>
+							<xs:documentation>Управляющий имуществом, предназначенным для обеспечения уставной деятельности либо собственных средств негосударственного пенсионного фонда</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" use="required">
+								<xs:annotation>
+									<xs:documentation>ИНН НПФа</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="INN_LEGAL_Type"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="PF">
+						<xs:annotation>
+							<xs:documentation>Управляющий, которому Пенсионным фондом РФ переданы в доверительное управление средства пенсионных накоплений</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" use="required">
+								<xs:annotation>
+									<xs:documentation>ИНН ПФ РФ</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="INN_LEGAL_Type"/>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="InfoIP" use="required">
+								<xs:annotation>
+									<xs:documentation>Данные об инвестиционном портфеле</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="9"/>
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="HomeMilitary">
+						<xs:annotation>
+							<xs:documentation>Управляющая компания, осуществляющая доверительное управление накоплениями для жилищного обеспечения военнослужащих</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="INN" use="required">
+								<xs:annotation>
+									<xs:documentation>ИНН</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="INN_LEGAL_Type"/>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="InfoIP" use="required">
+								<xs:annotation>
+									<xs:documentation>Данные об инвестиционном портфеле</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="9"/>
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="isQualInvestor" type="YES_NO_Type" use="optional" default="N">
+				<xs:annotation>
+					<xs:documentation>Клиент является квалифицированным инвестором</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TRD_RESTR" type="TRD_RESTR" use="optional">
+				<xs:annotation>
+					<xs:documentation>Возможность осуществления операций (сделок) с резидентами:
+1-Разрешены операции (сделки) только с недружественными нерезидентами;
+2-Разрешены операции (сделки) только с  резидентами;</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

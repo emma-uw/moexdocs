@@ -1,0 +1,330 @@
+/* Hero section - full-width dark navy, asymmetric layout */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--moex-hero-from) 0%, var(--moex-hero-to) 50%, #001a33 100%);
+  color: #fff;
+  padding: 5rem 2rem 6rem;
+  overflow: hidden;
+}
+
+/* Atmospheric depth: mesh + grain overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 70% 20%, rgba(227, 6, 19, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(0, 63, 125, 0.4) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 0.6fr);
+  gap: 3rem;
+  align-items: center;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.5rem 5rem;
+  }
+  .heroInner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* Decorative grid panel */
+.heroDeco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.heroDecoGrid {
+  width: 120px;
+  height: 120px;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+  transform: rotate(-12deg);
+}
+
+@media (max-width: 768px) {
+  .heroDeco {
+    min-height: 120px;
+  }
+  .heroDecoGrid {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.heroLogo {
+  display: block;
+  height: 40px;
+  margin-bottom: 1rem;
+  filter: brightness(0) invert(1);
+}
+
+.heroTitle {
+  font-family: var(--landing-font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+  animation: heroFadeUp 0.6s ease-out both;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 1.75rem;
+  max-width: 32rem;
+  animation: heroFadeUp 0.6s ease-out 0.1s both;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: heroFadeUp 0.6s ease-out 0.2s both;
+}
+
+@media (max-width: 768px) {
+  .heroButtons {
+    justify-content: center;
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle,
+  .heroSubtitle,
+  .heroButtons {
+    animation: none;
+  }
+}
+
+.heroButtonPrimary {
+  background: var(--moex-red);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.heroButtonPrimary:hover {
+  background: #c10510;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.heroButtonSecondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.heroButtonSecondary:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Section cards grid - MOEX product-style tiles */
+.sectionCards {
+  padding: 4rem 2rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionCardsTitle {
+  font-family: var(--landing-font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--ifm-heading-color);
+  animation: cardFadeUp 0.6s ease-out both;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  animation: cardFadeUp 0.5s ease-out both;
+  position: relative;
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  display: block;
+  overflow: hidden;
+}
+
+/* Visual band per card */
+.card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--moex-red), var(--ifm-color-primary));
+  opacity: 0.8;
+}
+
+.card:hover {
+  border-color: var(--moex-red);
+  box-shadow:
+    0 8px 24px rgba(0, 63, 125, 0.12),
+    0 0 0 1px rgba(227, 6, 19, 0.2);
+  transform: translateY(-4px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--moex-red);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .card:hover {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(227, 6, 19, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.cardTitle {
+  font-family: var(--landing-font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.5;
+}
+
+@keyframes cardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionCardsTitle,
+  .card {
+    animation: none;
+  }
+}
+
+/* Feature row - alternating section band */
+.features {
+  padding: 4rem 2rem 5rem;
+  background: linear-gradient(180deg, var(--ifm-background-surface-color) 0%, var(--ifm-background-color) 100%);
+}
+
+.featuresInner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.feature {
+  padding: 0 1rem;
+}
+
+.featureTitle {
+  font-family: var(--landing-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.featureDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.5;
+}
+
+.moexLink {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.moexLinkAnchor {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.moexLinkAnchor:hover {
+  text-decoration: underline;
+}

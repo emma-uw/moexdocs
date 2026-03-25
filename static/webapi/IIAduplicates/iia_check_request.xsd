@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2017 rel. 3 (x64) (http://www.altova.com) by Mikhail.Volodin (JSC Moscow Exchange) -->
+<!-- v1 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--Описание структуры файла с информацией о клиенте для проверки наличия у него открытого ИИС (Версия: 1.0)-->
+	<xs:simpleType name="DATE_FORMAT">
+		<xs:annotation>
+			<xs:documentation>Формат даты типа "01.12.2015"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="DOCNO_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Уникальный учетный номер документа в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value="[A-Z,0-9,//]{1,12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DOCTYPEID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор типа документа в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REMARKS_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Примечание к документу в системе электронного документооборота"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="120"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FIRMID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Идентификатор фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UNIFIRMID_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Уникод фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="[0-9]{10,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FIRMNAME_Type">
+		<xs:annotation>
+			<xs:documentation>Тип: "Краткое наименование фирмы"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PASSPORT_RF_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип: "№ и серия паспорта гражданина РФ"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+			<xs:pattern value="[0-9][0-9][' '][0-9][0-9][' '][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PASSPORT_USSR_TYPE">
+		<xs:annotation>
+			<xs:documentation>Тип: "№ и серия паспорта гражданина СССР"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="11"/>
+			<xs:maxLength value="16"/>
+			<xs:pattern value="[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ][ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[ABCDEFGHIJKLMNOPQRSTUVWXYZАВСЕНКМОРТХ]?[-][АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ][АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ][' '][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DOC_REQUISITES_Type">
+		<xs:annotation>
+			<xs:documentation>Реквизиты документа в системе электронного документооборота</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="DOC_DATE" type="DATE_FORMAT" use="required">
+			<xs:annotation>
+				<xs:documentation>Дата формирования файла</xs:documentation>
+			</xs:annotation>
+			<!--Дата формирования документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_TIME" type="xs:time" use="optional">
+			<xs:annotation>
+				<xs:documentation>Время формирования файла</xs:documentation>
+			</xs:annotation>
+			<!--Время формирования документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_NO" type="DOCNO_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Уникальный учетный номер документа в системе электронного документооборота</xs:documentation>
+			</xs:annotation>
+			<!--Уникальный учетный номер документа-->
+		</xs:attribute>
+		<xs:attribute name="DOC_TYPE_ID" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор типа документа в системе электронного документооборота</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор типа документа-->
+			<xs:simpleType>
+				<xs:restriction base="DOCTYPEID_Type">
+					<xs:pattern value="[I][I][S]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SENDER_ID" type="UNIFIRMID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор отправителя</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор фирмы-отправителя документа-->
+		</xs:attribute>
+		<xs:attribute name="SENDER_NAME" type="FIRMNAME_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Краткое наименование отправителя</xs:documentation>
+			</xs:annotation>
+			<!--Наименование (краткое) организатора системы электронного документооборота-->
+		</xs:attribute>
+		<xs:attribute name="RECEIVER_ID" type="FIRMID_Type" use="required">
+			<xs:annotation>
+				<xs:documentation>Идентификатор получателя</xs:documentation>
+			</xs:annotation>
+			<!--Идентификатор фирмы-получателя документа-->
+		</xs:attribute>
+		<xs:attribute name="REMARKS" type="REMARKS_Type" use="optional">
+			<xs:annotation>
+				<xs:documentation>Текст примечания к файлу</xs:documentation>
+			</xs:annotation>
+			<!--Примечание к документу-->
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="INDIVIDUAL_PERS_Type">
+		<xs:annotation>
+			<xs:documentation>Данные для идентификации физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="PASSPORT_RF">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина РФ (в формате: две цифры + пробел + две цифры + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_RF_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PASSPORT_USSR">
+				<xs:annotation>
+					<xs:documentation>Данные паспорта гражданина СССР (в формате: до 6 римских цифр (в латинском регистре) + '-' +2 буквы кирилицей + пробел + 6 цифр)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="DocNo" type="PASSPORT_USSR_TYPE" use="required">
+						<xs:annotation>
+							<xs:documentation>Номер документа</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="DOC_REQUISITES" type="DOC_REQUISITES_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="RUS">Блок информации о документе</xs:documentation>
+			<xs:documentation xml:lang="ENG">Document metadata</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MICEX_DOC">
+		<xs:annotation>
+			<xs:documentation xml:lang="RUS">Корневой элемент (root element) XML документа. </xs:documentation>
+			<xs:documentation xml:lang="ENG">Document root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DOC_REQUISITES"/>
+				<xs:element ref="CLIENT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLIENT">
+		<xs:annotation>
+			<xs:documentation>Блок данных о клиенте</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CLIENT_INDIVIDUAL">
+					<xs:annotation>
+						<xs:documentation>Блок данных о клиенте – физическом лице</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="INDIVIDUAL_PERS_Type"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

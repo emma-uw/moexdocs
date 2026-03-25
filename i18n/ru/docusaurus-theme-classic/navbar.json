@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "MOEX Docs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "MOEX Docs",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Документация",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.ClientsAPI": {
+    "message": "ClientsAPI",
+    "description": "Navbar item with label ClientsAPI"
+  },
+  "item.label.ASTS": {
+    "message": "ASTS",
+    "description": "Navbar item with label ASTS"
+  },
+  "item.label.Spectra": {
+    "message": "Spectra",
+    "description": "Navbar item with label Spectra"
+  },
+  "item.label.WebAPI": {
+    "message": "WebAPI",
+    "description": "Navbar item with label WebAPI"
+  }
+}

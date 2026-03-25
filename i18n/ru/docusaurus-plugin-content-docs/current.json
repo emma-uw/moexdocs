@@ -1,0 +1,262 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.astsSidebar.category.asts-": {
+    "message": "Bridge Interfaces",
+    "description": "The label for category 'Bridge Interfaces' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-auxiliary": {
+    "message": "Вспомогательные",
+    "description": "The label for category 'Вспомогательные' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency": {
+    "message": "Currency",
+    "description": "The label for category 'Currency' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker": {
+    "message": "Broker",
+    "description": "The label for category 'Broker' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk": {
+    "message": "Broker risk",
+    "description": "The label for category 'Broker risk' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-broker-risk-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-currency-rfs": {
+    "message": "RFS",
+    "description": "The label for category 'RFS' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities": {
+    "message": "Equities",
+    "description": "The label for category 'Equities' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker": {
+    "message": "Broker",
+    "description": "The label for category 'Broker' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk": {
+    "message": "Broker risk",
+    "description": "The label for category 'Broker risk' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-equities-broker-risk-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata": {
+    "message": "MarketData",
+    "description": "The label for category 'MarketData' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-gko": {
+    "message": "GKO",
+    "description": "The label for category 'GKO' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency": {
+    "message": "Currency MD",
+    "description": "The label for category 'Currency MD' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-currency-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities": {
+    "message": "Equities MD",
+    "description": "The label for category 'Equities MD' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v56": {
+    "message": "Версия v56 (Текущая)",
+    "description": "The label for category 'Версия v56 (Текущая)' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v55": {
+    "message": "Версия v55",
+    "description": "The label for category 'Версия v55' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v54": {
+    "message": "Версия v54",
+    "description": "The label for category 'Версия v54' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v53": {
+    "message": "Версия v53",
+    "description": "The label for category 'Версия v53' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v52": {
+    "message": "Версия v52",
+    "description": "The label for category 'Версия v52' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v51": {
+    "message": "Версия v51",
+    "description": "The label for category 'Версия v51' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v50": {
+    "message": "Версия v50",
+    "description": "The label for category 'Версия v50' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-marketdata-info-equities-v49": {
+    "message": "Версия v49",
+    "description": "The label for category 'Версия v49' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.asts-treasury": {
+    "message": "ГКО",
+    "description": "The label for category 'ГКО' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.Documentation": {
+    "message": "Documentation",
+    "description": "The label for category 'Documentation' in sidebar 'astsSidebar'"
+  },
+  "sidebar.astsSidebar.category.Evening Session": {
+    "message": "Evening Session",
+    "description": "The label for category 'Evening Session' in sidebar 'astsSidebar'"
+  }
+}

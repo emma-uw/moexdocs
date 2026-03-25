@@ -1,0 +1,28 @@
+---
+sidebar_position: 1
+title: Регистрация клиентов (XSD)
+sidebar_label: XSD-схемы
+---
+
+# Регистрация клиентов (XSD)
+
+Исходник — **`MoexClients.xsd`**. Справочник в виде **Markdown** (таблицы элементов, типов, атрибутов, ограничений и документации) см. ниже. Архив версий — **`xsd_archive/`** на [FTP](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/ClientRegistration/xsd_archive/).
+
+## Сгенерированная документация
+
+- [Справочник схемы MoexClients](./moex-clients-outline)
+
+## Скачать XSD
+
+- [MoexClients.xsd](/webapi/ClientRegistration/MoexClients.xsd) · [FTP](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/ClientRegistration/MoexClients.xsd)
+
+Обновление:
+
+```bash
+python3 scripts/xsd_outline_to_md.py \
+  -i docusaurus/static/webapi/ClientRegistration/MoexClients.xsd \
+  -o docusaurus/i18n/ru/docusaurus-plugin-content-docs/current/webapi/client-registration/moex-clients-outline.md \
+  --title "Справочник схемы MoexClients" \
+  --sidebar-label "MoexClients (таблицы)" \
+  --sidebar-position 2
+```

@@ -1,0 +1,16 @@
+---
+toc_min_heading_level: 2
+toc_max_heading_level: 5
+format: md
+title: Changes in interface Info
+sidebar_label: Info · Equities v53 → v54
+---
+
+﻿
+
+# Changes in interface Info
+
+No changes
+
+---
+Document created by ExIfcCmp.dll (ASTSExplorer.exe) 25.04.2025 16:40:43

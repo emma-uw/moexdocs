@@ -1,0 +1,41 @@
+---
+sidebar_position: 1
+title: IIA duplicates check
+sidebar_label: Overview
+---
+
+# IIA duplicates check
+
+## Service description (PDF)
+
+<iframe
+  src="/webapi/IIAduplicates/IIA_duplicates_check_service.pdf"
+  title="IIA duplicates check service"
+  width="100%"
+  height="800"
+  style={{ border: '1px solid #ccc', borderRadius: '4px' }}
+/>
+
+:::tip
+If the PDF does not display, [download the PDF](/webapi/IIAduplicates/IIA_duplicates_check_service.pdf). [FTP mirror](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/IIA_duplicates_check_service.pdf).
+:::
+
+## Request and response (XSD as Markdown)
+
+The XSD files are turned into **generated reference pages** (tables of elements, types, attributes, facets):
+
+- [IIA duplicates — request schema](./iia-check-request)
+- [IIA duplicates — response schema](./iia-check-response)
+
+**Download raw XSD:** [request](/webapi/IIAduplicates/iia_check_request.xsd) · [response](/webapi/IIAduplicates/iia_check_response.xsd) · [FTP request](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_request.xsd) · [FTP response](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_response.xsd)
+
+Regenerate from `docusaurus/static/webapi/IIAduplicates/`:
+
+```bash
+python3 scripts/xsd_outline_to_md.py -i docusaurus/static/webapi/IIAduplicates/iia_check_request.xsd \
+  -o docusaurus/docs/webapi/iia-duplicates/iia-check-request.md \
+  --title "IIA duplicates — request schema" --sidebar-label "Request schema" --sidebar-position 2
+python3 scripts/xsd_outline_to_md.py -i docusaurus/static/webapi/IIAduplicates/iia_check_response.xsd \
+  -o docusaurus/docs/webapi/iia-duplicates/iia-check-response.md \
+  --title "IIA duplicates — response schema" --sidebar-label "Response schema" --sidebar-position 3
+```

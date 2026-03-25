@@ -1,0 +1,30 @@
+---
+sidebar_position: 1
+title: Client registration (XSD)
+sidebar_label: XSD schemas
+---
+
+# Client registration (XSD)
+
+The machine-readable source is **`MoexClients.xsd`**. Use the **generated Markdown reference** below for tables of elements, types, attributes, and facets (with `xs:documentation` text where present). Older dated versions live under **`xsd_archive/`** on [FTP](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/ClientRegistration/xsd_archive/) (mirror locally with `scripts/sync_webapi_static.py`).
+
+## Generated documentation
+
+- [MoexClients schema reference](./moex-clients-outline) — full XSD reference (regenerate from static file).
+
+## Download raw XSD
+
+- [MoexClients.xsd](/webapi/ClientRegistration/MoexClients.xsd) · [FTP](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/ClientRegistration/MoexClients.xsd)
+
+Regenerate after updating the file under `docusaurus/static/webapi/`:
+
+```bash
+python3 scripts/xsd_outline_to_md.py \
+  -i docusaurus/static/webapi/ClientRegistration/MoexClients.xsd \
+  -o docusaurus/docs/webapi/client-registration/moex-clients-outline.md \
+  --title "MoexClients schema reference" \
+  --sidebar-label "MoexClients (tables)" \
+  --sidebar-position 2
+```
+
+Copy the output into `i18n/ru/docusaurus-plugin-content-docs/current/webapi/client-registration/moex-clients-outline.md` with Russian `--title` / `--sidebar-label` if needed.
