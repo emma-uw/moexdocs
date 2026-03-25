@@ -4,21 +4,21 @@ title: IIA duplicates check
 sidebar_label: Overview
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # IIA duplicates check
 
 ## Service description (PDF)
 
 <iframe
-  src="/webapi/IIAduplicates/IIA_duplicates_check_service.pdf"
+  src={useBaseUrl('/webapi/IIAduplicates/IIA_duplicates_check_service.pdf')}
   title="IIA duplicates check service"
   width="100%"
   height="800"
   style={{ border: '1px solid #ccc', borderRadius: '4px' }}
 />
 
-:::tip
-If the PDF does not display, [download the PDF](/webapi/IIAduplicates/IIA_duplicates_check_service.pdf). [FTP mirror](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/IIA_duplicates_check_service.pdf).
-:::
+
 
 ## Request and response (XSD as Markdown)
 
@@ -27,7 +27,7 @@ The XSD files are turned into **generated reference pages** (tables of elements,
 - [IIA duplicates — request schema](./iia-check-request)
 - [IIA duplicates — response schema](./iia-check-response)
 
-**Download raw XSD:** [request](/webapi/IIAduplicates/iia_check_request.xsd) · [response](/webapi/IIAduplicates/iia_check_response.xsd) · [FTP request](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_request.xsd) · [FTP response](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_response.xsd)
+**Download raw XSD:** <a href={useBaseUrl('/webapi/IIAduplicates/iia_check_request.xsd')}>request</a> · <a href={useBaseUrl('/webapi/IIAduplicates/iia_check_response.xsd')}>response</a> · [FTP request](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_request.xsd) · [FTP response](ftp://ftp.moex.com/pub/ClientsAPI/WebAPI/IIAduplicates/iia_check_response.xsd)
 
 Regenerate from `docusaurus/static/webapi/IIAduplicates/`:
 
