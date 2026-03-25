@@ -5,13 +5,13 @@ on:
     branches:
       - main
     paths:
-      - 'docusaurus/docs/**'
-      - 'docusaurus/src/**'
-      - 'docusaurus/static/**'
-      - 'docusaurus/i18n/**'
-      - 'docusaurus/docusaurus.config.js'
-      - 'docusaurus/package*.json'
-      - 'docusaurus/sidebars.js'
+      - 'docs/**'
+      - 'src/**'
+      - 'static/**'
+      - 'i18n/**'
+      - 'docusaurus.config.js'
+      - 'package*.json'
+      - 'sidebars.js'
       - '.github/workflows/**'
 
 permissions:
@@ -27,9 +27,6 @@ jobs:
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docusaurus
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,7 +36,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: docusaurus/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -54,7 +51,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docusaurus/build
+          path: build
 
   deploy:
     name: Deploy to GitHub Pages

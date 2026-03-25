@@ -8,9 +8,9 @@ const config = {
   tagline: 'Documentation',
   favicon: 'img/favicon.svg',
   url: "https://emma-uw.github.io",
-  baseUrl: "/moexcdocs/",
+  baseUrl: "/moexdocs/",
   organizationName: "emma-uw", 
-  projectName: "moexcdocs",
+  projectName: "moexdocs",
 
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'warn',
